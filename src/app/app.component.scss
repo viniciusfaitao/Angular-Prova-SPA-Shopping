@@ -1,0 +1,148 @@
+header {
+  background-color: #DDDDDD;
+  padding: 1em;
+  margin: 25px 50px;
+  overflow: hidden;
+  height: 125px;
+  
+  h1 {
+    float: left;
+    margin-top: 20px;
+    margin-left: 38px;
+  }
+
+
+
+  .basketNome{
+    font-size: 15px;
+    position: relative;
+    top: 20px;
+    left: 30px;
+  }
+
+  .basketEmpty{
+    margin-left:30px;
+  }
+
+  .basket {
+    position: relative;
+    float: right;
+    bottom: 20px;
+    right: 50px;
+    background-color: #6b6363d6;
+    color: white;
+    width: 300px;
+    height: 70px;
+    margin: 35px;
+    cursor: pointer;
+  }
+
+  @media (max-width: 500px){
+    .basket {
+      position: relative;
+      float: right;
+      bottom: 100px;
+      right: -95px;
+      background-color: #6b6363d6;
+      color: white;
+      height: 70px;
+      margin: 35px;
+      cursor: pointer;
+      width: 270px;
+    }
+  }
+  
+  .qtdProdutos{
+    float: right;
+    position: relative;
+    right: 50px;
+    bottom: 5px;
+  }
+
+  .produto{
+    margin-top: 40px;
+  }
+
+  .botaoRemover{
+    float: right;
+    border: none;
+    color: white;
+    background-color: transparent;
+    right: -5px;
+    bottom: 2px;
+  }
+
+
+}
+  
+  section {
+   background-color: whitesmoke;
+    padding: 1em;
+    margin: 0px 50px 30px 50px;
+    position: absolute;
+    top: 170px;
+
+    h2{
+      margin-top: 15px;
+      margin-left: 38px;
+    }
+
+    .products {
+      overflow: hidden;
+      float: left;
+      width: 255px;
+      
+      li {
+        list-style: none;
+        margin-top: 30px;
+        .product {
+          padding: 1em;
+          background-color: white;
+          height: 370px; 
+        }
+        
+        .nome{
+          font-weight: bold;
+          
+          margin-left: 7px;
+        }
+
+        .backGroundImagem{
+          background-color: black;
+          width: 170px;
+          height: 130px;
+          margin-top: 20px;
+          margin-left: 7px;
+        }
+
+        .descricao{
+          font-size: 13px;
+          margin-top: 20px;
+        }
+
+        .preco{
+          font-weight: bold;
+          margin-top: 10px;
+          margin-left: 7px;
+        }
+
+        .botaoComprar{
+          margin-top: 20px;
+          margin-left: 7px;
+          width: 170px;
+          height: 45px;
+          color: white;
+          background-color: darkgray;
+          text-transform: uppercase;
+          font-family: sans-serif;
+          border: none;
+        }
+
+        .botaoComprar:hover{
+          color: darkgray;
+          border: solid 2px darkgray;
+          background-color: white;
+        }
+      }
+    }
+  }

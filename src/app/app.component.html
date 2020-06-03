@@ -1,0 +1,123 @@
+<header>  
+  <h1>Logo</h1>
+  <div class="basket" (click)="open(dropdownCart)">
+    <span class="basketNome">Meu Carrinho:</span>
+    <div>
+      <div class="qtdProdutos">
+        <div >{{basket.length}} Produtos</div>
+      </div>
+    </div>
+    <ng-template #dropdownCart let-d="dismiss">
+      <div class="posBlocoModal">
+        <div class="cabecalhoModalHeader">Meu Carrinho
+         <button class="botaoFecharHeader" aria-label="Close" (click)="d('Cross click')">X</button>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div class="corpoModalHeader positionCarrinho">
+          <div *ngFor="let product of basket">
+            <div class="meuCarrinho">
+              <div class="produtoNome">
+                {{product.name}}
+              </div>
+              <div class="produtoQuantidade">
+                ({{product.quantidade}} item)
+              </div>
+              <div>
+                {{product.price | currency:'BR':'R$'}}
+                <button class="botaoRemover" (click)="open(modalRemove)" (click)="d('Cross click')">X</button>
+              </div>
+            </div>
+            <div class="dropdown-divider"></div>
+          </div>
+          <div *ngIf="total() <= 0">
+            <div class="carrinhoEmpty">Carrinho vazio</div>
+          </div>
+        </div>
+        <div class="backgroundTotal"  *ngIf="total() > 0">
+          <div class="total">Total:  {{total() | currency:'BR':'R$'}}</div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template #modalRemove let-d="dismiss">
+      <div class="cabecalhoModal">Remover Este Produto?
+        <button class="botaoFechar" aria-label="Close" (click)="d('Cross click')">X</button>
+      </div>
+      <div class="corpoModalSucess">
+        <div class="textoModal">
+          Tem certeza que deseja remover o produto do seu carrinho de compras?
+        </div>
+        <button class="botaoRemoverModal" (click)="removeToBasket(products)" (click)="open(modalSucessRemove)" (click)="d('Cross click')" >SIM</button>
+        <button class="botaoFecharModal" aria-label="Close" (click)="d('Cross click')">NÃO</button>
+      </div>
+    </ng-template>
+    <ng-template #modalSucessRemove let-d="dismiss" >
+        <div class="cabecalhoModal">Sucesso!
+          <button class="botaoFechar" aria-label="Close" (click)="d('Cross click')">X</button>
+        </div>
+        <div class="corpoModalSucess">
+          O produto foi removido do carrinho com sucesso!
+        </div>
+    </ng-template>
+  </div>
+</header>
+
+
+<section>
+  <h2>Lista de produtos</h2>
+  <ul *ngFor="let product of products" class="products">
+    <li>
+      <div class="product">
+        <div class="nome">
+          {{product.id}} {{product.name}}
+        </div>
+        <div class="backGroundImagem">
+          
+        </div>
+        <div class="descricao">
+          {{product.description}}
+        </div>
+        <div class="preco">
+          {{product.price | currency:'BR':'R$'}}
+        </div>
+
+        <div>
+          <button class="botaoComprar" (click)="open(modalProduct)">Comprar</button>
+          <ng-template #modalProduct let-d="dismiss">
+            <div class="posBlocoModal">
+              <div class="cabecalhoModal">Mais Detalhes<button class="botaoFechar" aria-label="Close" (click)="d('Cross click')">X</button></div>
+              <div class="corpoModal">
+                <div class="nomeModal" [title]="product.name">
+                    {{product.name}}
+                </div>
+                <div class="blockDescModal ">
+                  <div class="descricaoLongaModal">
+                    {{product.longDescription}}
+                  </div>
+                </div>
+                <div class="estoqueModal">
+                  Estoque: {{product.stock}}
+                </div>
+                <div class="precoModal" *ngIf="product.price">
+                  {{product.price | currency:'BR':'R$'}}
+                </div>
+                <div class="dropdown-divider lineModal"></div>
+                <div>
+                  <input class="campoTextoModal" type="number" placeholder="Informe a quantidade" [(ngModel)]="quantidade" required/>
+                  <button *ngIf="quantidade > 0 && quantidade <= product.stock" class="botaoComprarModal" (click)="addTobasket(product)" (click)="open(modalSucess)" (click)="d('Cross click')">COMPRAR</button>
+                  <div class="msgErr" *ngIf="quantidade > product.stock" > Quantidade maior que estoque</div>
+                  <div class="msgErr2" *ngIf="quantidade <= 0"> Digite um valor positivo</div>
+                  <ng-template #modalSucess  let-d="dismiss">
+                    <div class="cabecalhoModal">Sucesso!<button class="botaoFechar" aria-label="Close" (click)="d('Cross click')">X</button></div>
+                    <div class="corpoModalSucess">
+                      O produto foi adicionado ao carrinho com sucesso!
+                    </div>
+                  </ng-template>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </div>
+    </li>
+  </ul>
+</section>
